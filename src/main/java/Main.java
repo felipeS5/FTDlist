@@ -11,20 +11,24 @@ public class Main {
 		int n = -1;
 		
 		do{
-			System.out.print(" ---------------------------------\n" + 
-			                 "|Oq vc vai fazer?\n" + 
+			func.ver();
+			System.out.print(" \u001b[96m---------------------------------\n" + 
+			                 "| Oq vc vai fazer?\n" + 
 			                 " ---------------------------------\n" + 
 			                 "|N: Novo lembrete\n" + 
 			                 "|R: Remover lembrete\n" + 
 			                 "|nº: Edita a nota correspondente\n" + 
 			                 "|0: Fechar programa\n" + 
-			                 " ---------------------------------\n> ");
+			                 " ---------------------------------\n>\u001b[0m ");
 			let = sc.next().toUpperCase();
 			try {
 				n = Integer.parseInt(let);
+				
 				// em breve
-				System.out.println("\nEM BREVE\n");
-				// 
+				if (n != 0) {
+					System.out.println("\nEM BREVE\n");
+				}
+				
 			}catch (NumberFormatException e) {
 				if (let.equals("N")) {
 					func.add();
