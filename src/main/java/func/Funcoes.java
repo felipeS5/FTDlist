@@ -3,6 +3,7 @@ package func;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 import storage.Dados;
 
@@ -17,13 +18,23 @@ public class Funcoes {
 	}
 	
 	public void remove() {
-		System.out.print("\u001b[96mQual tarefa deve ser removida?\n>\u001b[0m ");
-		try{
-			lista.remove(sc.nextInt());
-		}catch (IndexOutOfBoundsException e) {
-			System.out.print("Esta tarefa não existe!");
-		}catch (/*InputMismatch*/Exception e) {
-			System.out.print("Digite apenas números!!!");
+		if (lista.size() > 0) {
+			System.out.print("\u001b[96mQual tarefa deve ser removida?\n>\u001b[0m ");
+			try{
+				lista.remove(sc.nextInt());
+				sc.nextLine();
+			}catch (IndexOutOfBoundsException e) {
+				System.out.println("\n\u001b[43m\u001b[30mEsta tarefa não existe!\u001b[0m\n");
+				sc.nextLine();
+				remove();
+			}catch (InputMismatchException e) {
+				System.out.println("\n\u001b[43m\u001b[30mDigite apenas números!!!\u001b[0m\n");
+				sc.nextLine();
+				remove();
+			}
+		}else{
+			System.out.println("\n\u001b[43m\u001b[30mA lista já está vazia!!\u001b[0m\n");
+			try{ Thread.sleep(3500); }catch(Exception e){}
 		}
 	}
 	
