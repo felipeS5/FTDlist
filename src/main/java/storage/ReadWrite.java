@@ -2,7 +2,6 @@ package storage;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.util.List;
 import java.util.Scanner;
 
 public class ReadWrite {
@@ -11,29 +10,26 @@ public class ReadWrite {
 	private FileWriter escreve;
 	
 	// Leitura
-	public List ler(List lista) {
+	public String ler() {
+		String json = "";
 		
 		try{
 			leitor = new Scanner(arq);
 		}catch(Exception e) {}
 		
-		while (leitor.hasNextLine()) {
-			lista.add(leitor.nextLine());
+		if(leitor.hasNextLine()) {
+			json += leitor.nextLine();
 		}
 		
 		leitor.close();
 		
-		return lista;
+		return json;
 	}
 	
 	// Escrita
-	public void escrever(List lista) {
+	public void escrever(String dados) {
 		try{
 			escreve = new FileWriter(arq);
-			String dados = "";
-			for ( int i=0; i<lista.size(); i++) {
-				dados += lista.get(i) + "\n";
-			}
 			
 			escreve.write(dados);
 			escreve.close();
