@@ -24,9 +24,9 @@ public class Main {
 			try {
 				n = Integer.parseInt(let);
 				
-				// em breve
 				if (n != 0) {
-					System.out.println("\nEM BREVE\n");
+					func.ver();
+					func.edit(n);
 				}
 				
 			}catch (NumberFormatException e) {

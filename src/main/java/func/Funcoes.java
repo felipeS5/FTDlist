@@ -1,12 +1,11 @@
 package func;
 
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.InputMismatchException;
 
 import storage.ReadWrite;
 
@@ -27,7 +26,7 @@ public class Funcoes {
 		limpaTela();
 		System.out.print("\n\u001b[96mInsira a tarefa:\n>\u001b[0m ");
 		obj.put("tarefa", sc.nextLine());
-		obj.put("estado", "progress");
+		obj.put("estado", "A");
 		dados.put(obj);
 		salvar();
 	}
@@ -72,10 +71,10 @@ public class Funcoes {
 			JSONObject obj = new JSONObject(dados.get(i).toString());
 			String tarefa = obj.getString("tarefa");
 			String estado = obj.getString("estado");
-			String symb = "❔";
+			String symb = "<???>";
 			String cor = "<???>";
 			
-			if(estado.equals("progress")) {
+			if(estado.equals("A")) {
 				symb = "⚪";
 				cor = "\u001b[7m";
 			}else if(estado.equals("V")) {
@@ -86,7 +85,44 @@ public class Funcoes {
 				cor = "\u001b[41m";
 			}
 			
-			System.out.printf("%d %s %s %s \u001b[0m\n\n", (i+1), symb, cor, tarefa);
+			System.out.printf("%d|%s %s %s \u001b[0m\n\n", (i+1), symb, cor, tarefa);
+		}
+	}
+	
+	// Edição
+	public void edit(int x) {
+		if (0<x && x<=dados.length()) {
+			System.out.print(" \u001b[96m---------------------------------\n" + 
+			                 "| Oq vc vai fazer na tarefa " + x + "?\n" + 
+			                 " ---------------------------------\n" + 
+			                 "|V: Missão cumprida!\n" + 
+			                 "|F: Missão falhou!\n" + 
+			                 "|A: Em andamento\n" + 
+			                 " ---------------------------------\n>\u001b[0m ");
+			String let = sc.next().toUpperCase();
+			String estado = "";
+			
+			if (let.equals("V")) {
+				estado = "V";
+			}else if (let.equals("F")) {
+				estado = "X";
+			}else if (let.equals("A")) {
+				estado = "A";
+			}else{
+				while ((!estado.equals("V") && !estado.equals("F")) && !estado.equals("A")) {
+					System.out.print("\n\u001b[43m\u001b[30mDigite algo válido!\u001b[0m\n\n>");
+					estado = sc.next().toUpperCase();
+				}
+			}
+			
+			JSONObject obj = new JSONObject(dados.get(x-1).toString());
+			
+			obj.put("estado", estado);
+			dados.put(x-1, obj);
+			salvar();
+		}else{
+			System.out.println("\n\u001b[43m\u001b[30m Esta tarefa("+x+") não existe! \u001b[0m\n");
+			try{ Thread.sleep(3500); }catch(Exception e){}
 		}
 	}
 	

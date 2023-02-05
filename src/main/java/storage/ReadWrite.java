@@ -11,16 +11,11 @@ public class ReadWrite {
 	
 	// Leitura
 	public String ler() {
-		String json = "";
-		
 		try{
 			leitor = new Scanner(arq);
 		}catch(Exception e) {}
 		
-		if(leitor.hasNextLine()) {
-			json += leitor.nextLine();
-		}
-		
+		String json = leitor.nextLine();
 		leitor.close();
 		
 		return json;
