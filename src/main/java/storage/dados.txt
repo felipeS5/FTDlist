@@ -1,1 +1,1 @@
-[{"estado":"A","tarefa":"Tarefa 1"},{"estado":"V","tarefa":"Tarefa 2"},{"estado":"X","tarefa":"Tarefa 3"},{"estado":"A","tarefa":"Nova tarefa"}]
+[{"estado":"V","tarefa":"Tarefa 1"},{"estado":"V","tarefa":"Tarefa 2"},{"estado":"X","tarefa":"Tarefa 3"},{"estado":"A","tarefa":"Nova tarefa"}]
