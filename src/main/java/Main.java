@@ -25,7 +25,6 @@ public class Main {
 				n = Integer.parseInt(let);
 				
 				if (n != 0) {
-					func.ver();
 					func.edit(n);
 				}
 				

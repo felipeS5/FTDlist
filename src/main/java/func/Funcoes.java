@@ -2,6 +2,10 @@ package func;
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.util.TimeZone;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,16 +21,21 @@ public class Funcoes {
 	public Funcoes() {
 		String lista = rw.ler();
 		dados = new JSONArray(lista);
+		TimeZone.setDefault(TimeZone.getTimeZone("America/Sao_Paulo"));
 	}
 	
 	// Adiciona
 	public void add() {
 		JSONObject obj = new JSONObject();
+		LocalDateTime ldt = LocalDateTime.now();
+		DateTimeFormatter dtForm = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+		String horaFormatada = ldt.format(dtForm);
 		
 		limpaTela();
 		System.out.print("\n\u001b[96mInsira a tarefa:\n>\u001b[0m ");
 		obj.put("tarefa", sc.nextLine());
 		obj.put("estado", "A");
+		obj.put("time", horaFormatada);
 		dados.put(obj);
 		salvar();
 	}
@@ -68,30 +77,15 @@ public class Funcoes {
 		limpaTela();
 		System.out.println("Tarefas:\n");
 		for(int i=0; i<dados.length(); i++) {
-			JSONObject obj = new JSONObject(dados.get(i).toString());
-			String tarefa = obj.getString("tarefa");
-			String estado = obj.getString("estado");
-			String symb = "<???>";
-			String cor = "<???>";
-			
-			if(estado.equals("A")) {
-				symb = "⚪";
-				cor = "\u001b[7m";
-			}else if(estado.equals("V")) {
-				symb = "✅";
-				cor = "\u001b[42m\u001b[30m";
-			}else{
-				symb = "❌";
-				cor = "\u001b[41m";
-			}
-			
-			System.out.printf("%d|%s %s %s \u001b[0m\n\n", (i+1), symb, cor, tarefa);
+			ver1(i, false);
 		}
 	}
 	
 	// Edição
 	public void edit(int x) {
 		if (0<x && x<=dados.length()) {
+			limpaTela();
+			ver1(x-1, true);
 			System.out.print(" \u001b[96m---------------------------------\n" + 
 			                 "| Oq vc vai fazer na tarefa " + x + "?\n" + 
 			                 " ---------------------------------\n" + 
@@ -126,8 +120,34 @@ public class Funcoes {
 		}
 	}
 	
+	// Ver individualmente
+	public void ver1(int x, boolean tempo) {
+		JSONObject obj = new JSONObject(dados.get(x).toString());
+		String tarefa = obj.getString("tarefa");
+		String estado = obj.getString("estado");
+		String symb = "<???>";
+		String cor = "<???>";
+		
+		if(estado.equals("A")) {
+			symb = "⚪";
+			cor = "\u001b[7m";
+		}else if(estado.equals("V")) {
+			symb = "✅";
+			cor = "\u001b[42m\u001b[30m";
+		}else{
+			symb = "❌";
+			cor = "\u001b[41m";
+		}
+		
+		System.out.printf("%d|%s %s %s \u001b[0m\n\n", (x+1), symb, cor, tarefa);
+		
+		if(tempo) {
+			System.out.println(obj.getString("time") + "\n");
+		}
+	}
+	
 	
 	public void limpaTela() {
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	}
 }

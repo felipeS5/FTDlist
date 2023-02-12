@@ -1,1 +1,1 @@
-[{"estado":"V","tarefa":"Tarefa 1"},{"estado":"V","tarefa":"Tarefa 2"},{"estado":"X","tarefa":"Tarefa 3"},{"estado":"A","tarefa":"Nova tarefa"}]
+[{"estado":"A","tarefa":"tr1","time":"12/02/2023 - 15:08:20"},{"estado":"V","tarefa":"tr2","time":"12/02/2023 - 15:08:25"},{"estado":"X","tarefa":"tr3","time":"12/02/2023 - 15:08:29"}]
