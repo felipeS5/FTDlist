@@ -15,9 +15,9 @@ public class Main {
 			System.out.print(" \u001b[96m---------------------------------\n" + 
 			                 "| Oq vc vai fazer?\n" + 
 			                 " ---------------------------------\n" + 
-			                 "|N: Novo lembrete\n" + 
-			                 "|R: Remover lembrete\n" + 
-			                 "|nº: Edita a nota correspondente\n" + 
+			                 "|N: Nova tarefa\n" + 
+			                 "|R: Remover tarefa\n" + 
+			                 "|nº: Edita a tarefa correspondente\n" + 
 			                 "|0: Fechar programa\n" + 
 			                 " ---------------------------------\n>\u001b[0m ");
 			let = sc.next().toUpperCase();

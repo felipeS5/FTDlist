@@ -17,10 +17,11 @@ public class Funcoes {
 	private Scanner sc = new Scanner(System.in);
 	private ReadWrite rw = new ReadWrite();
 	private JSONArray dados;
+	private DailyReset reset = new DailyReset();
 	
 	public Funcoes() {
-		String lista = rw.ler();
-		dados = new JSONArray(lista);
+		reset.checarData();
+		dados = new JSONArray(rw.ler());
 		TimeZone.setDefault(TimeZone.getTimeZone("America/Sao_Paulo"));
 	}
 	
