@@ -37,6 +37,16 @@ public class Funcoes {
 		obj.put("tarefa", sc.nextLine());
 		obj.put("estado", "A");
 		obj.put("time", horaFormatada);
+		
+		// Tarefa diária?
+		System.out.print("\n\nA tarefa será repetida diariamente?[s/n]\n> ");
+		String dRes = sc.nextLine().toUpperCase();
+		if (dRes.equals("S")) {
+			obj.put("dReset", true);
+		}else{
+			obj.put("dReset", false);
+		}
+		
 		dados.put(obj);
 		salvar();
 	}
@@ -140,10 +150,24 @@ public class Funcoes {
 			cor = "\u001b[41m";
 		}
 		
-		System.out.printf("%d|%s %s %s \u001b[0m\n\n", (x+1), symb, cor, tarefa);
+		System.out.printf("%d|%s %s %s \u001b[0m ", (x+1), symb, cor, tarefa);
 		
+		// icone dReset
+		if(obj.getBoolean("dReset")) {
+			System.out.print("⏲️ \n\n");
+		}else{
+			System.out.print("\n\n");
+		}
+		
+		// Data
 		if(tempo) {
-			System.out.println(obj.getString("time") + "\n");
+			System.out.print("📆 " + obj.getString("time") + "\n");
+			
+			if(obj.getBoolean("dReset")) {
+				System.out.print("⏲️ Esta tarefa é uma rotina diária\n\n ");
+			}else{
+				System.out.println();
+			}
 		}
 	}
 	

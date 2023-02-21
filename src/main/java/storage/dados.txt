@@ -1,1 +1,1 @@
-[{"estado":"A","tarefa":"tr1","time":"12/02/2023 - 15:08:20"},{"estado":"V","tarefa":"tr2","time":"12/02/2023 - 15:08:25"},{"estado":"X","tarefa":"tr3","time":"12/02/2023 - 15:08:29"}]
+[{"estado":"V","tarefa":"dR","time":"21/02/2023 - 19:57:40","dReset":true},{"estado":"X","tarefa":"nDR","time":"21/02/2023 - 19:58:38","dReset":false},{"estado":"A","tarefa":"oDR","time":"21/02/2023 - 19:58:51","dReset":true},{"estado":"V","tarefa":"oNDR","time":"21/02/2023 - 19:59:04","dReset":false}]

@@ -29,12 +29,16 @@ public class DailyReset {
 			
 			for ( int i=0; i<dados.length(); i++) {
 				JSONObject obj = new JSONObject(dados.get(i).toString());
-				obj.put("estado", "A");
+				
+				if(obj.getBoolean("dReset")) {
+					obj.put("estado", "A");
+				}
+				
 				dados.put(i, obj);
 				rw.escrever(dados.toString());
 			}
 			
-			System.out.print("TODAS AS TAREFAS FORAM ZERADAS");
+			System.out.print("TAREFAS FORAM ZERADAS");
 			try { Thread.sleep(2000); } catch(Exception e){}
 		}
 	}
